@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication
-from PyQt5 import uic, QtGui, QtWidgets
+from PyQt5 import QtGui, QtWidgets
 from ui import Ui_MainWindow
 import sys
 from PIL import Image
@@ -44,7 +44,7 @@ class UI(QMainWindow, Ui_MainWindow):
 
 
     def light_mode(self, checked):
-        if checked:
+        if checked: # Light mode
             self.setStyleSheet("background-color: rgb(230, 235, 255);")
             self.light_mode_checkBox.setStyleSheet("color: rgb(34, 47, 62);")
             self.label.setStyleSheet("color: rgb(52, 31, 151);")
@@ -64,7 +64,7 @@ class UI(QMainWindow, Ui_MainWindow):
             "    background-color: rgb(238, 82, 83);\n"
             "}")
             self.result_label.setStyleSheet("color: rgb(34, 47, 62);")
-        else:
+        else: # Dark mode
             self.setStyleSheet("background-color: rgb(34, 47, 62);")
             self.light_mode_checkBox.setStyleSheet("color: rgb(238, 82, 83);")
             self.label.setStyleSheet("color: rgb(254, 202, 87);")
