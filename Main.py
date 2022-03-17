@@ -1,9 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication
-from PyQt5 import uic, QtGui, QtWidgets
+from PyQt5 import uic, QtWidgets
 import sys
 from PIL import Image
-from fpdf import FPDF
-from numpy import save
 
 
 class UI(QMainWindow):
@@ -28,21 +26,15 @@ class UI(QMainWindow):
 
 
     def convert(self):
+        images = []
         try:
             save_path = QtWidgets.QFileDialog.getSaveFileName(None, 'Save file', '','PDF files (*.pdf)')
-            img1 = Image.open(self.input_path[0][0])
-            img1.convert("RGB")
-            width, height = img1.size
-            pdf = FPDF(unit="pt", format=[width, height])
-            # pdf = FPDF()
+            
             for image in self.input_path[0]:
-                print("HI")
-                pdf.add_page()
-                pdf.image(image)
-
-            print(save_path)
-            pdf.output(save_path[0], "F")
-            # self.result_label.setText("PDF file has been saved")
+                images.append(Image.open(image))
+            
+            images[0].save(save_path[0], save_all=True, append_images=images[1:])
+            self.result_label.setText("PDF file has been saved")
         
         except:
             image_message = QtWidgets.QMessageBox()
