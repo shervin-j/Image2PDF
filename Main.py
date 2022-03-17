@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication
-from PyQt5 import uic, QtWidgets
+from PyQt5 import uic, QtGui, QtWidgets
 import sys
 from PIL import Image
 
@@ -42,9 +42,8 @@ class UI(QMainWindow):
 
 
 if __name__ == "__main__":
-    import sys
     app = QApplication(sys.argv)
     ui = UI()
     ui.setWindowTitle("Images To PDF")
-    # ui.setWindowIcon(QtGui.QIcon("icon.png"))
+    ui.setWindowIcon(QtGui.QIcon("icon.png"))
     sys.exit(app.exec_())
